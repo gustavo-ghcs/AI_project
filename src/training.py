@@ -10,8 +10,10 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import MinMaxScaler
 
+data_folder = "C:/Users/gustavo/Desktop/Projeto IA/Nuvens/"
+
 # Configuração de log
-logging.basicConfig(filename='log_poux.log', level=logging.INFO)
+logging.basicConfig(filename= data_folder + 'logs.log', level=logging.INFO)
 
 def memory_usage():
     try:
@@ -33,8 +35,6 @@ def print_status(message):
 
 start_time = time.time()
 print_status("Início do processamento")
-
-data_folder = "C:/Users/gustavo/Desktop/Projeto IA/Nuvens/"
 
 dataset = "3DML_urban_point_cloud.xyz"
 val_dataset = "3DML_validation.xyz"
@@ -80,7 +80,7 @@ try:
     val_rf_predictions = rf_classifier.predict(val_features_scaled)
     
     val_pcd['Classification'] = val_rf_predictions
-    val_pcd.to_csv('classified_cloud_point.xyz', sep=' ', index=False, header=True)
+    val_pcd.to_csv(data_folder + 'classified_cloud_point.xyz', sep=' ', index=False, header=True)
     print_status("Dados classificados salvos")
     
 except Exception as e:
