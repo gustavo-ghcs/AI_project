@@ -1,145 +1,94 @@
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
-from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.preprocessing import StandardScaler
-from datetime import datetime
+import numpy as np
+import matplotlib.pyplot as plt
 import time
 import logging
+import pickle
+from datetime import datetime
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import MinMaxScaler
 
 # Configuração de log
-logging.basicConfig(filename='log_apuana.log', level=logging.INFO)
+logging.basicConfig(filename='log_poux.log', level=logging.INFO)
 
-# Função para monitorar o uso de memória
 def memory_usage():
     try:
         with open('/proc/self/status') as f:
             lines = f.readlines()
         for line in lines:
-            if 'VmRSS' in line:  # VmRSS is the Resident Set Size (memory usage)
-                memory_usage = line.split()[1]  # The value is in kilobytes
-                return f"{int(memory_usage) // 1024} MB"  # Convert to MB
+            if 'VmRSS' in line:
+                memory_usage = line.split()[1]
+                return f"{int(memory_usage) // 1024} MB"
     except FileNotFoundError:
-        return "Informação de memória não disponível no sistema."
+        return "Informação de memória não disponível."
 
-# Função para imprimir status e salvar no log
 def print_status(message):
-    # Obtém a data e hora atuais
     now = datetime.now()
-    current_date = now.strftime("%Y-%m-%d")
-    current_time = now.strftime("%H:%M:%S")
-    
-    # Formatação aprimorada para visualização
-    status_message = (
-        f"{current_date} {current_time} [STATUS]: {message} - MEM: {memory_usage()}"
-    )
-    
+    current_time = now.strftime("%Y-%m-%d %H:%M:%S")
+    status_message = f"{current_time} [STATUS]: {message} - MEM: {memory_usage()}"
     print(status_message)
     logging.info(status_message)
 
+start_time = time.time()
+print_status("Início do processamento")
 
-print_status(f"[INÍCIO DO PROCESSAMENTO]\n")
-start_time = time.time()  # Iniciar o contador de tempo total
+data_folder = "C:/Users/gustavo/Desktop/Projeto IA/Nuvens/"
+
+dataset = "3DML_urban_point_cloud.xyz"
+val_dataset = "3DML_validation.xyz"
 
 try:
-    # Carregar dados de treino
-    print_status("Etapa 1 - Carregar dados de treino")
-    df = pd.read_csv('', sep=" ", header=0) # Inserir dataset de treino
-
-    # Carregar a nuvem de pontos não classificada
-    print_status("Etapa 2 - Carregar nuvem de pontos não classificada")
-    df_unclassified = pd.read_csv('', sep=" ", header=0) # Inserir dataset de teste
-
-    # Mapear a coluna 'Classification' para os valores desejados
-    print_status("Etapa 3 - Mapear a coluna Classification")
-    mapping = {2: 'ground', 6: 'buildings', 5: 'vegetation'} # testando não usar a camada do ground original
-    df['Scalar_field'] = df['Scalar_field'].map(mapping)
-    df['Scalar_field'].fillna('others', inplace=True)
-
-    # Dividir os dados em conjuntos de treinamento e teste
-    print_status("Etapa 4 - Separar features e variável de saída")
-    X_train, X_test, y_train, y_test = train_test_split(
-        df[['X', 'Y', 'Z', 'R', 'G', 'B']], 
-        df["Scalar_field"], test_size=0.2, random_state=42
-    )
-
-    # Normalizar os dados de treinamento e teste
-    print_status("Etapa 5 - Verificar balanceamento das classes")
-    scaler = StandardScaler()
-    X_train_scaled = scaler.fit_transform(X_train)
-    X_test_scaled = scaler.transform(X_test)
-
-    # Criar e treinar o modelo nos dados normalizados
-    print_status("Etapa 6 - Treinar modelos")
+    print_status("Carregando datasets")
+    pcd = pd.read_csv(data_folder + dataset, delimiter=' ')
+    pcd.dropna(inplace=True)
+    val_pcd = pd.read_csv(data_folder + val_dataset, delimiter=' ')
+    val_pcd.dropna(inplace=True)
+    
+    print_status("Processando features e rótulos")
+    val_labels = val_pcd['Classification']
+    val_features = val_pcd[['Z', 'R', 'G', 'B', 'omnivariance_2', 'normal_cr_2', 'NumberOfReturns', 'planarity_2', 'omnivariance_1', 'verticality_1']]
+    val_features_sampled, val_features_test, val_labels_sampled, val_labels_test = train_test_split(val_features, val_labels, test_size=0.9)
+    val_features_scaled_sample = MinMaxScaler().fit_transform(val_features_test)
+    
+    labels = pd.concat([pcd['Classification'], val_labels_sampled])
+    features = pd.concat([pcd[['Z', 'R', 'G', 'B', 'omnivariance_2', 'normal_cr_2', 'NumberOfReturns', 'planarity_2', 'omnivariance_1', 'verticality_1']], val_features_sampled])
+    features_scaled = MinMaxScaler().fit_transform(features)
+    
+    print_status("Treinando o modelo")
+    X_train, X_test, y_train, y_test = train_test_split(features_scaled, labels, test_size=0.4)
     start_train = time.time()
-    model = RandomForestClassifier(n_estimators=100)
-    model.fit(X_train_scaled, y_train)
+    
+    rf_classifier = RandomForestClassifier(n_estimators=10)
+    rf_classifier.fit(X_train, y_train)
     end_train = time.time()
-
-    print(f"Tempo de execução: {end_train - start_train:.2f} segundos")
-    logging.info(f"Tempo de execução: {end_train - start_train:.2f} segundos")
-    print_status("Treinamento dos modelos concluído!")
-
-    # Fazer previsões no conjunto de teste normalizado
-    y_pred = model.predict(X_test_scaled)
-
-    # Calcular a matriz de confusão
-    conf_matrix = confusion_matrix(y_test, y_pred)
-    print_status("Matriz de Confusão:")
-    print_status(conf_matrix)
-
-    # Imprimir um relatório de classificação
-    print_status("\nRelatório de Classificação:")
-    print_status(classification_report(y_test, y_pred))
-
-    # Salvar o modelo treinado - caso queira salvar, tirar o comentário das linhas abaixo
-    #with open('model.pkl', 'wb') as f:
-    #    pickle.dump(model, f)
-
-    # Normalizar os dados não classificados
-    print_status("Etapa 8 - Normalizar dados não classificados")
-    df_unclassified_scaled = scaler.transform(df_unclassified[['X', 'Y', 'Z', 'R', 'G', 'B']])
-
-    # Usar o modelo para fazer previsões nos dados não classificados
-    print_status("Etapa 9 - Fazer previsões nos dados não classificados")
-    predictions = model.predict(df_unclassified_scaled)
-
-    # Mapear as previsões de volta para os números correspondentes
-    inverse_mapping = {'buildings': 6, 'vegetation': 5, 'ground':2}
-    predictions_mapped = [inverse_mapping[pred] for pred in predictions]
-
-    # Adicionar as previsões como uma nova coluna aos dados não classificados
-    df_unclassified['Scalar_field'] = predictions_mapped
-
-    # Salvar os dados não classificados agora classificados em um novo arquivo .xyz
-    print_status("Etapa 10 - Salvar dados classificados")
-    df_unclassified.to_csv('classified_RF.xyz', sep=" ", index=False, header=True)
     
-    # Imprimir o tempo de execução
-    print("Tempo de execução: %s segundos" % (time.time() - start_time))
-
-
+    print_status(f"Treinamento concluído em {end_train - start_train:.2f} segundos")
+    
+    rf_predictions = rf_classifier.predict(X_test)
+    print_status("Calculando métricas")
+    print_status(f"Matriz de Confusão:\n{confusion_matrix(y_test, rf_predictions)}")
+    print_status(f"Relatório de Classificação:\n{classification_report(y_test, rf_predictions)}")
+    
+    with open('model_trained.pkl', 'wb') as f:
+        pickle.dump(rf_classifier, f)
+    print_status("Modelo treinado salvo")
+    
+    print_status("Classificando dados de validação")
+    val_features_scaled = MinMaxScaler().fit_transform(val_features)
+    val_rf_predictions = rf_classifier.predict(val_features_scaled)
+    
+    val_pcd['Classification'] = val_rf_predictions
+    val_pcd.to_csv('classified_cloud_point.xyz', sep=' ', index=False, header=True)
+    print_status("Dados classificados salvos")
+    
 except Exception as e:
-    
-    # Obtém a data e hora atuais
-    now = datetime.now()
-    current_date = now.strftime("%Y-%m-%d")
-    current_time = now.strftime("%H:%M:%S")
-    
-    # Formatação aprimorada para visualização
-    status_message = (
-        f"==============================================\n"
-        f"[ERRO]: {current_date} {current_time}\n"
-        f"MENSAGEM: {str(e)}\n"
-        f"=============================================="
-    )
-    
-    print(status_message)
-    logging.error(status_message)
+    error_message = f"[ERRO] {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}: {str(e)}"
+    print(error_message)
+    logging.error(error_message)
 
 finally:
-    # Calcular o tempo total de execução
     total_time_seconds = time.time() - start_time
     total_time_hours = total_time_seconds / 3600
-    print(f"Tempo total de execução: {total_time_hours:.2f} horas")
+    print_status(f"Tempo total de execução: {total_time_hours:.2f} horas")
