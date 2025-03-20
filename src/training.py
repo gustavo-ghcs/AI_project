@@ -10,10 +10,20 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import MinMaxScaler
 
-data_folder = "C:/Users/gustavo/Desktop/Projeto IA/Nuvens/"
+# Diretório dos arquivos
+data_folder = "./data/"
+
+# Diretório dos modelos
+models_folder = "./models/"
+
+# Nome do arquivo da nuvem de treinamento
+dataset = "3DML_urban_point_cloud.xyz"
+
+# Nome do arquivo da nuvem de validação
+val_dataset = "3DML_validation.xyz"
 
 # Configuração de log
-logging.basicConfig(filename= data_folder + 'logs.log', level=logging.INFO)
+logging.basicConfig(filename= 'logs.log', level=logging.INFO)
 
 def memory_usage():
     try:
@@ -35,9 +45,6 @@ def print_status(message):
 
 start_time = time.time()
 print_status("Início do processamento")
-
-dataset = "3DML_urban_point_cloud.xyz"
-val_dataset = "3DML_validation.xyz"
 
 try:
     print_status("Carregando datasets")
@@ -71,7 +78,7 @@ try:
     print_status(f"Matriz de Confusão:\n{confusion_matrix(y_test, rf_predictions)}")
     print_status(f"Relatório de Classificação:\n{classification_report(y_test, rf_predictions)}")
     
-    with open('model_trained.pkl', 'wb') as f:
+    with open(models_folder + 'model_trained.pkl', 'wb') as f:
         pickle.dump(rf_classifier, f)
     print_status("Modelo treinado salvo")
     
