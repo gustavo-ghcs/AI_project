@@ -72,4 +72,5 @@ A avaliação do modelo é feita com métricas padrão de aprendizado de máquin
 Para dúvidas ou sugestões, entre em contato:
 
 📧 Email: **ghcs@cin.ufpe.br**, **gmdn@cin.ufpe.br**, **lcmc@cin.ufpe.br**
+
 🔗 GitHub: **gustavo-ghcs**, **geovannaadomingos**, **lucasccampos**
