@@ -50,13 +50,13 @@ print(f"Nuvem classificada salva em: {output_file}")
 
 # Gerar Relatório de Classificação
 print("Gerando Relatório de Classificação")
-true_labels = new_pcd['Classification']  # Caso tenha rótulos verdadeiros, substituir aqui
+true_labels = new_pcd['Classification']
 
 # Criar relatório de classificação
 report = classification_report(true_labels, predictions, digits=2)
 print(report)
 
-# Salvar relatório como imagem exatamente como no terminal
+# Salvar relatório como imagem
 fig, ax = plt.subplots(figsize=(8, 5))
 ax.text(0.01, 0.99, report, fontsize=10, va="top", ha="left", family="monospace", wrap=True)
 ax.axis("off")
@@ -64,7 +64,7 @@ plt.title("Relatório de Classificação", fontweight="bold")
 plt.savefig(output_folder + "relatorio_classificacao.jpg", dpi=300, bbox_inches="tight", pad_inches=0.5)
 print(f"Relatório de Classificação salvo em: {output_folder}relatorio_classificacao.jpg")
 
-# Gerar imagem da Nuvem de Pontos Classificada (X, Y) colorida pelas classes
+# Gerar imagem da Nuvem de Pontos Classificada
 print("Gerando imagem da Nuvem de Pontos Classificada")
 fig, ax = plt.subplots(figsize=(10, 6))
 scatter = ax.scatter(new_pcd['X'], new_pcd['Y'], c=predictions, cmap="viridis", s=0.05)
