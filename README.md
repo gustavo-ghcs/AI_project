@@ -45,8 +45,8 @@ O projeto segue as seguintes etapas:
 ### Execução:
 1. Clone este repositório:  
 ```bash
-   git clone
-   cd repositorio
+   git clone https://github.com/gustavo-ghcs/AI_project.git
+   cd AI_project/
    ```
 2. Instale as dependências:
 ```bash
