@@ -1,10 +1,7 @@
 import pandas as pd
-import numpy as np
 import pickle
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import classification_report
-import textwrap
 
 # Diretórios dos arquivos
 data_folder = "./data/"
