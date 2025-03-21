@@ -3,6 +3,8 @@
 ## Descrição do Projeto
 Este projeto tem como objetivo classificar elementos em nuvens de pontos 3D utilizando técnicas de Machine Learning, especificamente um modelo baseado em Random Forest. Os dados utilizados incluem informações espaciais e espectrais dos pontos, como coordenadas (X, Y, Z), valores de cor (R, G, B) e atributos derivados da análise da nuvem.
 
+O código está pronto para ser colocado em um cluster para treinamento, caso seja necessário trabalhar com datasets mais pesados.
+
 ## Estrutura do Projeto
 O projeto segue as seguintes etapas:
 
@@ -22,11 +24,16 @@ O projeto segue as seguintes etapas:
 
 4. **Desenvolvimento do Frontend**  
    - Interface interativa para facilitar a visualização e interação com os resultados.  
-   - utilizando **Gradio**.  
+   - Utilizando **Gradio**.  
 
 5. **Documentação e Apresentação**  
    - Relatório detalhado sobre todas as etapas do projeto.  
    - Apresentação demonstrando os resultados e desafios enfrentados.  
+
+📄 **[Documentação do projeto](https://docs.google.com/document/d/1GHl7TQAHpqj_4DYWphi3rCgld5yS4gNHdrcstA9DGBc/edit?usp=sharing)**  
+
+📂 **[Drive com os dados das nuvens de pontos](https://drive.google.com/drive/folders/1s18AL6UCysrMWVYkRq8X7-eGyGP62YUe)**  
+
 
 ## Tecnologias Utilizadas
 - **Linguagem**: Python  
