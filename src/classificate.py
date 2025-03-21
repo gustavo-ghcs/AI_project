@@ -12,7 +12,7 @@ models_folder = "./models/"
 output_folder = "./images/"
 
 # Nome do arquivo da nuvem sem classificação
-new_dataset = "3DML_validation.xyz"
+new_dataset = "nuvem_pontos_1.xyz"
 
 # Carregar modelo
 print("Carregando modelo treinado")
@@ -66,7 +66,7 @@ print(f"Relatório de Classificação salvo em: {output_folder}relatorio_classif
 
 # Gerar imagem da Nuvem de Pontos Classificada
 print("Gerando imagem da Nuvem de Pontos Classificada")
-fig, ax = plt.subplots(figsize=(10, 6))
+fig, ax = plt.subplots(figsize=(6, 6))
 scatter = ax.scatter(new_pcd['X'], new_pcd['Y'], c=predictions, cmap="viridis", s=0.05)
 ax.set_title('3D Point Cloud Predictions')
 ax.set_xlabel("X")
