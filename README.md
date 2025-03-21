@@ -22,7 +22,7 @@ O projeto segue as seguintes etapas:
 
 4. **Desenvolvimento do Frontend**  
    - Interface interativa para facilitar a visualização e interação com os resultados.  
-   - Possível utilização de **Streamlit** ou **Gradio**.  
+   - utilizando **Gradio**.  
 
 5. **Documentação e Apresentação**  
    - Relatório detalhado sobre todas as etapas do projeto.  
