@@ -54,9 +54,9 @@ O projeto segue as seguintes etapas:
    ```
 3. Execute o script principal para treinar o modelo:
 ```bash
-   python classificador_nuvem.py
+   python training.py
    ```
-4. Os resultados da classificação serão armazenados no arquivo **classified_cloud_point.xyz**.
+4. Os resultados da classificação serão armazenados no arquivo `data/classified_cloud_point.xyz` e o modelo em `models/model_trained.pkl`.
 
 ## Resultados Esperados
 
