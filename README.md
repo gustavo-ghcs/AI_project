@@ -59,11 +59,15 @@ O projeto segue as seguintes etapas:
 ```bash
    pip install -r requirements.txt
    ```
-3. Execute o script principal para treinar o modelo:
+3. Baixe as nuvens de treino e teste a partir do [drive de nuvens de pontos](https://drive.google.com/drive/folders/1s18AL6UCysrMWVYkRq8X7-eGyGP62YUe)e coloque-as na pasta `data/`:
+- **Treino:** `3DML_urban_point_cloud.xyz`
+- **Teste:** `nuvem_pontos_*.xyz.xyz`
+     
+4. Execute o script principal para treinar o modelo:
 ```bash
    python training.py
    ```
-4. Os resultados da classificação serão armazenados no arquivo `data/classified_cloud_point.xyz` e o modelo em `models/model_trained.pkl`.
+5. Os resultados da classificação serão armazenados no arquivo `data/classified_cloud_point.xyz` e o modelo em `models/model_trained.pkl`.
 
 ## Resultados Esperados
 
