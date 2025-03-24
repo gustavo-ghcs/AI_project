@@ -69,6 +69,27 @@ O projeto segue as seguintes etapas:
    ```
 5. Os resultados da classificação serão armazenados no arquivo `data/classified_cloud_point.xyz` e o modelo em `models/model_trained.pkl`.
 
+## Estrutura dos Arquivos
+O projeto está organizado da seguinte forma:
+```bash
+   AI_project/
+📁 data/
+   ├── nuvem_pontos_*.xyz
+   ├── 3DML_urban_point_cloud.xyz
+📁 images/
+   ├── nuvem_classificada.jpg
+📁 models/
+   ├── model_trained.pkl
+📁 src/
+   ├── classificate.py
+   ├── training.py
+📄 .gitignore
+📄 requirements.txt
+📄 logs.log
+📄 README.md
+📄 LICENSE
+   ```
+
 ## Resultados Esperados
 
 Após o treinamento, o modelo será capaz de classificar corretamente pontos em uma nuvem 3D nas categorias:
