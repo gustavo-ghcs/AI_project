@@ -59,7 +59,7 @@ O projeto segue as seguintes etapas:
 ```bash
    pip install -r requirements.txt
    ```
-3. Baixe as nuvens de treino e teste a partir do [drive de nuvens de pontos](https://drive.google.com/drive/folders/1s18AL6UCysrMWVYkRq8X7-eGyGP62YUe)e coloque-as na pasta `data/`:
+3. Baixe as nuvens de treino e teste a partir do [drive de nuvens de pontos](https://drive.google.com/drive/folders/1s18AL6UCysrMWVYkRq8X7-eGyGP62YUe) e coloque-as na pasta `data/`:
 - **Treino:** `3DML_urban_point_cloud.xyz`
 - **Teste:** `nuvem_pontos_*.xyz.xyz`
      
