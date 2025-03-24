@@ -40,7 +40,7 @@ O projeto segue as seguintes etapas:
 - **Bibliotecas**:  
   - `pandas`, `numpy` → Manipulação de dados  
   - `matplotlib` → Visualização  
-  - `sklearn` → Treinamento e avaliação do modelo  
+  - `scikit-learn` → Treinamento e avaliação do modelo  
   - `pickle` → Serialização do modelo  
   - `logging` → Registro de logs  
 
