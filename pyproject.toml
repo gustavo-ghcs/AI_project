@@ -1,0 +1,15 @@
+[project]
+name = "ai-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "datetime>=5.5",
+    "fastapi[standard]>=0.115.12",
+    "logging>=0.4.9.6",
+    "matplotlib==3.10.0",
+    "pandas==2.2.3",
+    "python-multipart>=0.0.20",
+    "scikit-learn==1.6.0",
+]

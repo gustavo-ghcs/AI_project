@@ -1,5 +1,15 @@
 data/
+classified_data/
+download_data/
 
 models/
-
 images/
+
+.mypy_cache/
+.venv
+*.log
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
