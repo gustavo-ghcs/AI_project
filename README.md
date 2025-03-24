@@ -100,6 +100,10 @@ Após o treinamento, o modelo será capaz de classificar corretamente pontos em 
 
 A avaliação do modelo é feita com métricas padrão de aprendizado de máquina, como **precision**, **recall**, **F1-score** e **matriz de confusão**.
 
+## Visualização Detalhada
+
+Para visualizar a nuvem de pontos de forma mais detalhada, recomenda-se o uso do software **[CloudCompare](https://www.danielgm.net/cc/)**, que permite uma melhor análise e manipulação dos dados 3D.
+
 ## Contato
 Para dúvidas ou sugestões, entre em contato:
 
