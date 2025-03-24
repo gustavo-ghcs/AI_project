@@ -19,7 +19,7 @@ O projeto segue as seguintes etapas:
    - Avaliação do desempenho com métricas como **Matriz de Confusão** e **Relatório de Classificação**.  
 
 3. **Implementação do Endpoint**  
-   - Desenvolvimento de uma API utilizando **Flask** ou **FastAPI**.  
+   - Desenvolvimento de uma API utilizando **FastAPI**.  
    - O endpoint recebe os dados de entrada e retorna a classificação dos pontos.  
 
 4. **Desenvolvimento do Frontend**  
