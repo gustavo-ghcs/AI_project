@@ -84,7 +84,7 @@ def gerar_imagens(new_pcd: pd.DataFrame, predictions, image_path1: Path):
     ax.set_title("3D Point Cloud Predictions")
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
-    plt.savefig(image_path1, dpi=300)
+    plt.savefig(image_path1, dpi=600)
 
     # fig, ax = plt.subplots(figsize=(6, 6))
     # scatter = ax.scatter(new_pcd['X'], new_pcd['Z'], c=predictions, cmap="plasma", s=0.05)
