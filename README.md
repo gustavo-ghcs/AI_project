@@ -1,7 +1,7 @@
-# Projeto de Classificação de Nuvens de Pontos 3D
+# Projeto de Classificação de Nuvens de Pontos
 
 ## Descrição do Projeto
-Este projeto tem como objetivo classificar elementos em nuvens de pontos 3D utilizando técnicas de Machine Learning, especificamente um modelo baseado em Random Forest. Os dados utilizados incluem informações espaciais e espectrais dos pontos, como coordenadas (X, Y, Z), valores de cor (R, G, B) e atributos derivados da análise da nuvem.
+Este projeto tem como objetivo classificar elementos em nuvens de pontos utilizando técnicas de Machine Learning, especificamente um modelo baseado em Random Forest. Os dados utilizados incluem informações espaciais e espectrais dos pontos, como coordenadas (X, Y, Z), valores de cor (R, G, B) e atributos derivados da análise da nuvem.
 
 O código está pronto para ser colocado em um cluster para treinamento, caso seja necessário trabalhar com datasets mais pesados.
 
