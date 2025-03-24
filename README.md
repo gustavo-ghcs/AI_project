@@ -30,6 +30,8 @@ O projeto segue as seguintes etapas:
    - Relatório detalhado sobre todas as etapas do projeto.  
    - Apresentação demonstrando os resultados e desafios enfrentados.  
 
+## Links Importantes
+
 📄 **[Documentação do projeto](https://docs.google.com/document/d/1GHl7TQAHpqj_4DYWphi3rCgld5yS4gNHdrcstA9DGBc/edit?usp=sharing)**  
 
 📂 **[Drive com os dados das nuvens de pontos](https://drive.google.com/drive/folders/1s18AL6UCysrMWVYkRq8X7-eGyGP62YUe)**  
