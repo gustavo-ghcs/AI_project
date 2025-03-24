@@ -78,6 +78,7 @@ O projeto está organizado da seguinte forma:
 📁 data/
    ├── nuvem_pontos_*.xyz
    ├── 3DML_urban_point_cloud.xyz
+   ├── nuvem_classificada.xyz
 📁 images/
    ├── nuvem_classificada.jpg
 📁 models/
