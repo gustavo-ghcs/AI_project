@@ -76,16 +76,17 @@ O projeto segue as seguintes etapas:
    ```
 5. Os resultados da classificação serão armazenados no arquivo `data/classified_cloud_point.xyz` e o modelo em `models/model_trained.pkl`.
 
-### Execução do Back-End:
+### Execução do Front-End e Back-End:
+Após a execução do treinamento, é necessário executar o Front-End e o Back-End com os seguintes comandos:
+- Back-End
 ```bash
    fastapi dev src/classificate_with_api.py 
    ```
-
-### Execução do Front-End:
+- Front-End
 ```bash
    yarn run dev
    ```
-**Observação**: Execução completa em **[Repositório Front-End](https://github.com/lucasccampos/front_projeto_ia_facul)**.
+**Observação**: Passo a passo para execução do Front-End em **[Repositório Front-End](https://github.com/lucasccampos/front_projeto_ia_facul)**.
 
 ## Estrutura dos Arquivos
 O projeto está organizado da seguinte forma:
