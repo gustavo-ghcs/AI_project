@@ -40,17 +40,20 @@ O projeto segue as seguintes etapas:
 
 
 ## Tecnologias Utilizadas
-- **Linguagem**: Python  
-- **Bibliotecas**:  
+- **Linguagem**: Python, JavaScript  
+- **Bibliotecas**:
+  - `fastapi` → API backend
   - `pandas`, `numpy` → Manipulação de dados  
   - `matplotlib` → Visualização  
   - `scikit-learn` → Treinamento e avaliação do modelo  
   - `pickle` → Serialização do modelo  
-  - `logging` → Registro de logs  
+  - `logging` → Registro de logs
+  - `nextjs` → Interface web  
 
 ## Como Executar o Projeto
 ### Requisitos:
-- Python 3.8+
+- Python 3.8+ (para o backend)
+- Node.js 16+ (para o frontend)
 - Bibliotecas mencionadas acima (podem ser instaladas com `pip install -r requirements.txt`)
 
 ### Execução do Treinamento:
@@ -73,7 +76,16 @@ O projeto segue as seguintes etapas:
    ```
 5. Os resultados da classificação serão armazenados no arquivo `data/classified_cloud_point.xyz` e o modelo em `models/model_trained.pkl`.
 
-### Execução do Front-End e Back-End:
+### Execução do Back-End:
+```bash
+   fastapi dev src/classificate_with_api.py 
+   ```
+
+### Execução do Front-End:
+```bash
+   yarn run dev
+   ```
+**Observação**: Execução completa em **[Repositório Front-End](https://github.com/lucasccampos/front_projeto_ia_facul)**.
 
 ## Estrutura dos Arquivos
 O projeto está organizado da seguinte forma:
@@ -106,7 +118,7 @@ Após o treinamento, o modelo será capaz de classificar corretamente pontos em 
 - Vegetação (vegetation)
 - Edifícios (buildings)
 
-A avaliação do modelo é feita com métricas padrão de aprendizado de máquina, como **precision**, **recall**, **F1-score** e **matriz de confusão**.
+A avaliação do modelo é feita com métricas padrão de aprendizado de máquina, como **precision**, **recall** e **F1-score**.
 
 ## Visualização Detalhada
 
