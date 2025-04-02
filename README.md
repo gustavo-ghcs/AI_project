@@ -24,7 +24,7 @@ O projeto segue as seguintes etapas:
 
 4. **Desenvolvimento do Frontend**  
    - Interface interativa para facilitar a visualização e interação com os resultados.  
-   - Utilizando **Gradio**.  
+   - Utilizando **NextJS**.  
 
 5. **Documentação e Apresentação**  
    - Relatório detalhado sobre todas as etapas do projeto.  
@@ -53,7 +53,7 @@ O projeto segue as seguintes etapas:
 - Python 3.8+
 - Bibliotecas mencionadas acima (podem ser instaladas com `pip install -r requirements.txt`)
 
-### Execução:
+### Execução do Treinamento:
 1. Clone este repositório:  
 ```bash
    git clone https://github.com/gustavo-ghcs/AI_project.git
@@ -72,6 +72,8 @@ O projeto segue as seguintes etapas:
    python training.py
    ```
 5. Os resultados da classificação serão armazenados no arquivo `data/classified_cloud_point.xyz` e o modelo em `models/model_trained.pkl`.
+
+### Execução do Front-End e Back-End:
 
 ## Estrutura dos Arquivos
 O projeto está organizado da seguinte forma:
