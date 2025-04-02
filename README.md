@@ -89,6 +89,7 @@ O projeto está organizado da seguinte forma:
    ├── model_trained.pkl
 📁 src/
    ├── classificate.py
+   ├── classificate_with_api.py
    ├── training.py
 📄 .gitignore
 📄 requirements.txt
